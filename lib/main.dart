@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_expenses/components/transaction_form.dart';
 import 'package:flutter_expenses/components/transaction_list.dart';
@@ -10,11 +9,26 @@ void main() {
 }
 
 class ExpensesApp extends StatelessWidget {
-  const ExpensesApp({super.key});
+  ExpensesApp({super.key});
+  final ThemeData tema = ThemeData();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage());
+    return MaterialApp(
+      home: MyHomePage(),
+      theme: ThemeData(
+        useMaterial3: false,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.purple,
+          foregroundColor: Colors.white,
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.amber,
+          primary: Colors.purple,
+          secondary: Colors.amber,
+        ),
+      ),
+    );
   }
 }
 
@@ -72,36 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
       value: 211.30,
       date: DateTime.now(),
     ),
-    Transaction(
-      id: 't11',
-      title: 'Prestação do Carro',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't12',
-      title: 'Prestação da moto',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't13',
-      title: ' Magic',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't14',
-      title: 'Conta de Bonecos',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't15',
-      title: 'Alimentação',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
   ];
 
   void _addTransaction(String title, double value) {
@@ -130,7 +114,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 142, 200, 133),
         actions: [
           IconButton(
             onPressed: () {
@@ -143,13 +126,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              padding: EdgeInsets.all(5),
-              width: double.infinity,
-              child: Card(elevation: 5, child: Text('Gráfico')),
+            SizedBox(
+              child: Card(
+                elevation: 5,
+                color: Theme.of(context).appBarTheme.backgroundColor,
+                child: Text(
+                  'Gráfico',
+                  style: TextStyle(
+                    color: Theme.of(context).appBarTheme.foregroundColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
             TransactionList(_transactions),
           ],
