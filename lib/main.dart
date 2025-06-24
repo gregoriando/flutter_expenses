@@ -58,53 +58,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 10000.76,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de Luz',
-      value: 211.30,
-      date: DateTime.now().subtract(Duration(days: 4)),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Conta de água',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't4',
-      title: 'Conta de internet',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
-    // Transaction(
-    //   id: 't5',
-    //   title: 'Conta de cartão de crédito',
-    //   value: 211.30,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(id: 't6', title: 'Marisa', value: 211.30, date: DateTime.now()),
-    // Transaction(
-    //   id: 't7',
-    //   title: 'Riachuelo',
-    //   value: 211.30,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(id: 't8', title: 'Renner', value: 211.30, date: DateTime.now()),
-    // Transaction(id: 't9', title: 'Iptu', value: 211.30, date: DateTime.now()),
-    // Transaction(
-    //   id: 't10',
-    //   title: 'Conta de gas',
-    //   value: 211.30,
-    //   date: DateTime.now(),
-    // ),
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -112,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addTransaction(String title, double value) {
+  void _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
